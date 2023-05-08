@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "805356187165",
+    "project_id": "chatappnative-c348d",
+    "storage_bucket": "chatappnative-c348d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805356187165:android:7df78a5fdf8775fad120f4",
+        "android_client_info": {
+          "package_name": "com.example.chatappnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805356187165-v8l476ok9gqm4gfc7knhnelbmlpefct7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatappnative",
+            "certificate_hash": "49330e9a6bf35397fd06474c7bbb07bca95077f6"
+          }
+        },
+        {
+          "client_id": "805356187165-0plmktja6lm3hemsjlidve8a42t5kupn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrXd_1y7iXGFLibpPZq_7K1iV0uGjklb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805356187165-0plmktja6lm3hemsjlidve8a42t5kupn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
