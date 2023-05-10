@@ -37,6 +37,7 @@ public class RegistrationActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     String name,password,email,rPassword,status;
+    SignUpHandler signUpHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         Objects.requireNonNull(getSupportActionBar()).hide();
         bindingView();
-
+        signUpHandler=SignUpHandler.getInstance(getApplicationContext());
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
         auth = FirebaseAuth.getInstance();

@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     String email,password;
+    LoginHandler loginHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
       bingdingView();
       firebaseAuth=FirebaseAuth.getInstance();
+      loginHandler= LoginHandler.getInstance(getApplicationContext());
 
 
         logsignup.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this,RegistrationActivity.class)));
@@ -47,7 +49,19 @@ public class LoginActivity extends AppCompatActivity {
             if(email.isEmpty() && password.isEmpty()){
                 errorToast("Please Complete all required field");
             }else {
-                userLogin(email,password);
+              loginHandler.userLogin(email, password, new LoginHandler.LoginListener() {
+                  @Override
+                  public void loginSuccess(String message) {
+                      successToast(message);
+                      startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                      finish();
+                  }
+
+                  @Override
+                  public void loginFailed(String error) {
+                      errorToast(error);
+                  }
+              });
             }
 
 
@@ -55,26 +69,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void userLogin(String email,String password) {
-        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if(task.isSuccessful()){
-                    try {
-                        successToast("Login Successfully done");
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }catch (Exception e){
-                        errorToast(e.getMessage());
-                    }
-                }else {
-                    errorToast(Objects.requireNonNull(task.getException()).getMessage());
-                }
-            }
-        });
-
-    }
 
     private void bingdingView() {
         logsignup=findViewById(R.id.logsignup);
