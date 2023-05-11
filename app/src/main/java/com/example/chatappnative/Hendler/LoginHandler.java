@@ -1,7 +1,7 @@
-package com.example.chatappnative;
+package com.example.chatappnative.Hendler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
@@ -9,8 +9,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class LoginHandler {
 
@@ -34,6 +32,7 @@ public class LoginHandler {
 
     public void userLogin(String email,String password,LoginListener listener) {
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
