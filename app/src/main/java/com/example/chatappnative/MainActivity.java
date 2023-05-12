@@ -1,5 +1,7 @@
 package com.example.chatappnative;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mainUserRecyclerView;
     UserAdapter adapter;
     FirebaseDatabase database;
+    Dialog dialog;
     ArrayList<UserModel> usersArrayList;
     ImageView imglogout;
     ImageView cumbut,setbut;
@@ -78,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         imglogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(MainActivity.this,R.style.dialoge);
+
+                Log.d(TAG, "onClick: hhhhhhh");
+                 dialog = new Dialog(MainActivity.this);
                 dialog.setContentView(R.layout.dialog_layout);
                 Button no,yes;
                 yes = dialog.findViewById(R.id.yesbnt);
@@ -105,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
         setbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, setting.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivity(intent);
             }
         });
         cumbut.setOnClickListener(new View.OnClickListener() {
@@ -121,4 +127,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+    }
+
 }
