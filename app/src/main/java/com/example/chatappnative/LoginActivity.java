@@ -2,6 +2,7 @@ package com.example.chatappnative;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -23,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String email,password;
     LoginHandler loginHandler;
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
       bingdingView();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
       firebaseAuth=FirebaseAuth.getInstance();
       loginHandler= LoginHandler.getInstance(getApplicationContext());
 
@@ -44,9 +48,11 @@ public class LoginActivity extends AppCompatActivity {
             if(email.isEmpty() && password.isEmpty()){
                 errorToast("Please Complete all required field");
             }else {
+                progressDialog.show();
               loginHandler.userLogin(email, password, new LoginHandler.LoginListener() {
                   @Override
                   public void loginSuccess(String message) {
+                      progressDialog.dismiss();
                       successToast(message);
                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
                       finish();
@@ -54,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
                   @Override
                   public void loginFailed(String error) {
+                      progressDialog.dismiss();
                       errorToast(error);
                   }
               });

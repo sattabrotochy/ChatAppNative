@@ -60,6 +60,7 @@ public class SignUpHandler {
                               storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
                                   UserModel users = new UserModel(id,name,email,password,uri.toString(),status);
                                   reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                      @SuppressLint("SuspiciousIndentation")
                                       @Override
                                       public void onComplete(@NonNull Task<Void> task) {
                                           if (task.isSuccessful()){

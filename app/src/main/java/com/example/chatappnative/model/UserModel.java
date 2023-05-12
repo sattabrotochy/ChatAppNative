@@ -4,15 +4,20 @@ public class UserModel {
 
     String profilepic,mail,userName,password,userId,lastMessage,status;
 
-    public UserModel(String profilepic, String mail, String userName, String password, String userId, String lastMessage, String status) {
-        this.profilepic = profilepic;
-        this.mail = mail;
-        this.userName = userName;
-        this.password = password;
-        this.userId = userId;
-        this.lastMessage = lastMessage;
-        this.status = status;
+
+    public UserModel() {
+        // Required empty constructor for Firebase
     }
+
+//    public UserModel(String profilepic, String mail, String userName, String password, String userId, String lastMessage, String status) {
+//        this.profilepic = profilepic;
+//        this.mail = mail;
+//        this.userName = userName;˚
+//        this.password = password;
+//        this.userId = userId;
+//        this.lastMessage = lastMessage;
+//        this.status = status;
+//    }
 
     public UserModel(String profilepic, String mail, String userName, String password, String userId, String status) {
         this.profilepic = profilepic;
